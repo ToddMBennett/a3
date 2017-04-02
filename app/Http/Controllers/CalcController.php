@@ -12,14 +12,16 @@ class CalcController extends Controller
     * /books
     */
     public function index() {
-      return 'View all books...'
+      return 'View all calculations...';
     }
 
     /*
     * GET
     * /books/{title?}
     */
-    public function view($title = null) {
-      return 'You want to view book '.$title;
+    public function show($title = null) {
+      return view('calculations.show')->with([
+        'title' => $title,
+      ]);
     }
 }
