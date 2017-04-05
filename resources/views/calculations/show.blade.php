@@ -1,14 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
+@extends('layouts.master')
 
-    <meta charset="utf-8">
-    <title>Show calculations: <?=$title?></title>
+@push('head')
+  <link rel="stylesheet" href="/css/calculations/show.css">
+@endpush
 
-  </head>
-  <body>
+@section('result')
+  Show calculations: {{$result}}
+@endsection
 
-    <h1>Show calcuations: <?=$title?></h1>
+@section('content')
+  <h1>Show calculations: {{$result}}
+@endsection
 
-  </body>
-</html>
+@push('body')
+  <script type="text/javascript">
+
+  </script>
+@endpush

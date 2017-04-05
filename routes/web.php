@@ -11,9 +11,7 @@
 | Map of application
 */
 
-Route::get('/calculations', 'CalcController@index');
-
-Route::get('/calculations/{title?}', 'CalcController@show');
+Route::get('/calculations/{calculate}', 'CalcController@show');
 
 if(config('app.env') == 'local') {
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

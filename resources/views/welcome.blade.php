@@ -7,6 +7,6 @@
 
   </head>
   <body>
-    <h1>A3 - Bill Splitter</h1>
+    <h1>A3 - Bill Split</h1>
   </body>
 </html>
