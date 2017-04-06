@@ -4,12 +4,12 @@
   <link rel="stylesheet" href="/css/calculations/show.css">
 @endpush
 
-@section('result')
-  Show calculations: {{$calculate}}
+@section('title')
+  {{$title}}
 @endsection
 
 @section('content')
-  <h1>Show calculations: {{$calculate}}
+  <h1>Each person should pay: {{$calculate}}
 @endsection
 
 @push('body')

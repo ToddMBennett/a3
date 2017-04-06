@@ -8,6 +8,6 @@ class WelcomeController extends Controller
 {
 
     public function __invoke() {
-        return view('layout.master');
+        return view('layouts.master');
     }
 }

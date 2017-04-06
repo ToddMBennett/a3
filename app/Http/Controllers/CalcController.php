@@ -9,49 +9,50 @@ class CalcController extends Controller
 
     /*
     * GET
-    * /calculations/{result}
+    * /show
     */
-    public function show($result = null) {
-        return view('calculations.show')->with([
-            'calculate' => $calculate,
+    public function show(Request $request) {
+
+        $this->validate($request, [
+            'amount' => 'required|integer',
         ]);
-    }
 
-    public function 
-    // Values
-    $num = (isset($_GET['num'])) ? $_GET['num'] : '';
-    $roundUp = $form->isChosen('roundUp');
-    $amount = (isset($_GET['amount'])) ? $_GET['amount'] : '';
-    $service = (isset($_GET['service'])) ? $_GET['service'] : '';
-    $calculate = '';
+        // Values
+        $num = (isset($_GET['num'])) ? $_GET['num'] : '';
+        $roundUp = (isset($_GET['amount'])) ? $_GET['amount'] : '';
+        $amount = (isset($_GET['amount'])) ? $_GET['amount'] : '';
+        $service = (isset($_GET['service'])) ? $_GET['service'] : '';
+        $calculate = (isset($_GET['service'])) ? $_GET['service'] : '';
 
-    // Requires numeric inputs and range for specific fields
-    if($form->isSubmitted()) {
-        $errors = $form->validate(
-            [
-                'num' => 'numeric|min:1|required',
-                'amount' => 'numeric|min:0|required'
-            ]
-        );
-    }
+        // Alerts user if dropdown selection isn't chosen
+        if($service == 'tipping') {
+            $alertType = 'alert-danger';
+            $results = 'No tip was added. Please choose the level of service.';
+        }
+        else {
+            $alertType = 'alert-info';
+            $results = 'A tip of '.$service.'% has been added.';
+        }
 
-    // Alerts user if dropdown selection isn't chosen
-    if($service == 'tipping') {
-        $alertType = 'alert-danger';
-        $results = 'No tip was added. Please choose the level of service.';
-    }
-    else {
-        $alertType = 'alert-info';
-        $results = 'A tip of '.($service *100).'% has been added.';
-    }
+        // Caculation for splitting bill, with rounding and without rounding
+        if(is_numeric($amount) && is_numeric($num)) {
+            if($roundUp == 'yes') {
+                $calculate = 'Each person should pay $'.ceil($amount / $num) * (1 + $service);
+            } else {
+                $calculate = 'Each person should pay $'.floor($amount / $num) * (1 +$service);
+            }
+        }
 
-    // Caculation for splitting bill, with rounding and without rounding
-    if(is_numeric($amount) && is_numeric($num)) {
-      if($roundUp == 'yes') {
-        $calculate = 'Each person should pay $'.ceil($amount / $num) * (1 + $service);
-      } else {
-        $calculate = 'Each person should pay $'.floor($amount / $num) * (1 +$service);
-      }
-    }
+        return view('layouts.master')->with([
+            'calculate' => $calculate,
+            'num' => $num,
+            'amount' => $amount,
+            'service' => $service,
+            'roundUp' => $roundUp,
+            'alertType' => $alertType,
+            'results' => $results,
+        ]);
 
+        
+    }
 }
