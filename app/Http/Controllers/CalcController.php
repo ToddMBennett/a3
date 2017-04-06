@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CalcController extends Controller {
+class CalcController extends Controller
+{
 
     /*
     * GET
@@ -16,6 +17,7 @@ class CalcController extends Controller {
         ]);
     }
 
+    public function 
     // Values
     $num = (isset($_GET['num'])) ? $_GET['num'] : '';
     $roundUp = $form->isChosen('roundUp');

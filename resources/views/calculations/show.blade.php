@@ -5,11 +5,11 @@
 @endpush
 
 @section('result')
-  Show calculations: {{$result}}
+  Show calculations: {{$calculate}}
 @endsection
 
 @section('content')
-  <h1>Show calculations: {{$result}}
+  <h1>Show calculations: {{$calculate}}
 @endsection
 
 @push('body')
