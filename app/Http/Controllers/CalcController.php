@@ -15,7 +15,7 @@ class CalcController extends Controller
     public function show(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'num' => 'integer',
+            'customers' => 'integer',
             'amount' => 'numeric',
         ]);
 
@@ -25,8 +25,8 @@ class CalcController extends Controller
                         ->withInput();
         }
         // Values
-        $num = (isset($_GET['num'])) ? $_GET['num'] : '';
-        $roundUp = (isset($_GET['amount'])) ? $_GET['amount'] : '';
+        $customers = (isset($_GET['customers'])) ? $_GET['customers'] : '';
+        $roundUp = (isset($_GET['roundUp'])) ? $_GET['roundUp'] : '';
         $amount = (isset($_GET['amount'])) ? $_GET['amount'] : '';
         $service = (isset($_GET['service'])) ? $_GET['service'] : '';
         $calculate = null;
@@ -42,17 +42,17 @@ class CalcController extends Controller
         }
 
         // Caculation for splitting bill, with rounding and without rounding
-        if(is_numeric($amount) && is_numeric($num)) {
+        if(is_numeric($amount) && is_numeric($customers)) {
             if($roundUp == 'CHECKED') {
-                $calculate = 'Each person should pay $'.ceil($amount / $num) * (1 + $service);
+                $calculate = 'Each person should pay $'.ceil($amount / $customers) * (1 + $service);
             } else {
-                $calculate = 'Each person should pay $'.($amount / $num) * (1 +$service);
+                $calculate = 'Each person should pay $'.floor($amount / $customers) * (1 +$service);
             }
         }
 
         return view('layouts.master')->with([
             'calculate' => $calculate,
-            'num' => $num,
+            'customers' => $customers,
             'amount' => $amount,
             'service' => $service,
             'roundUp' => $roundUp,

@@ -20,14 +20,11 @@
   </head>
 
   <body>
+		@yield('content')
     <!-- Contain the parameters  -->
     <div class='container-fluid'>
       <h1>Bill Splitter</h1>
       <hr />
-        <!-- <h3>Would you like to split or randomize someone to foot the bill?</h3>
-        <input type="radio" id="split" name="splitOrFoot" /> Split the bill<br>
-        <input type="radio" id="foot" name="splitOrFoot" /> Randomize a 'Footer'
-      </form> -->
 
       <div id='billSplitter'>
         <!-- Form creation and PHP request method GET -->
@@ -36,13 +33,13 @@
           <!-- Text input for number of paying customers -->
           <div class='formInput'>
             <label for='split'>Split how many ways? </label>
-            <input type='text' name='num' id='split' size='16' placeholder='Paying customers' required="required" value= {{ $num }}>
+            <input type='text' name='customers' id='split' size='16' placeholder='Paying customers' required="required" value= {{ $customers }}>
           </div>
 
 					{{-- Displaying errors after validation check --}}
-					@if($errors->get('num'))
+					@if($errors->get('customers'))
     				<ul>
-        			@foreach($errors->get('num') as $error)
+        			@foreach($errors->get('customers') as $error)
             		<li>{{ $error }}</li>
         			@endforeach
     				</ul>
@@ -86,7 +83,7 @@
           <!-- Radio button for rounding up or not -->
           <div class='formInput'>
             <label>Would you like to round up? </label>
-            <input type='checkbox' name='roundUp' value='yes' @if( $roundUp == 'yes') echo 'CHECKED' @endif> Yes
+            <input type='checkbox' name='roundUp' value='yes' @if( $roundUp == true ) echo 'CHECKED' @endif> Yes
           </div>
 
           <hr />
