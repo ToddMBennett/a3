@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 class CalcController extends Controller
 {
@@ -13,16 +14,22 @@ class CalcController extends Controller
     */
     public function show(Request $request) {
 
-        $this->validate($request, [
-            'amount' => 'required|integer',
+        $validator = Validator::make($request->all(), [
+            'num' => 'integer',
+            'amount' => 'numeric',
         ]);
 
+        if ($validator->fails()) {
+            return redirect('/')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         // Values
         $num = (isset($_GET['num'])) ? $_GET['num'] : '';
         $roundUp = (isset($_GET['amount'])) ? $_GET['amount'] : '';
         $amount = (isset($_GET['amount'])) ? $_GET['amount'] : '';
         $service = (isset($_GET['service'])) ? $_GET['service'] : '';
-        $calculate = (isset($_GET['service'])) ? $_GET['service'] : '';
+        $calculate = null;
 
         // Alerts user if dropdown selection isn't chosen
         if($service == 'tipping') {
@@ -36,10 +43,10 @@ class CalcController extends Controller
 
         // Caculation for splitting bill, with rounding and without rounding
         if(is_numeric($amount) && is_numeric($num)) {
-            if($roundUp == 'yes') {
+            if($roundUp == 'CHECKED') {
                 $calculate = 'Each person should pay $'.ceil($amount / $num) * (1 + $service);
             } else {
-                $calculate = 'Each person should pay $'.floor($amount / $num) * (1 +$service);
+                $calculate = 'Each person should pay $'.($amount / $num) * (1 +$service);
             }
         }
 
@@ -53,6 +60,6 @@ class CalcController extends Controller
             'results' => $results,
         ]);
 
-        
+
     }
 }

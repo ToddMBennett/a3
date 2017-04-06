@@ -77,7 +77,7 @@
           </div>
 
           <!-- Alert box if user doesn't select service -->
-          @if ($_GET):
+          @if ($_GET)
             <div class='alert {{ $alertType }}'>
               {{ $results }}
             </div>
@@ -88,17 +88,6 @@
             <label>Would you like to round up? </label>
             <input type='checkbox' name='roundUp' value='yes' @if( $roundUp == 'yes') echo 'CHECKED' @endif> Yes
           </div>
-
-          {{-- <!-- checking for errors in text fields -->
-          @if(isset($errors))
-            <div class='alertErr'>
-              <ul>
-                @foreach($errors as $error):
-                  <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
-          @endif --}}
 
           <hr />
           <!-- Calculate button -->
