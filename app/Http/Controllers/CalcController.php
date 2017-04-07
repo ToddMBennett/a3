@@ -14,9 +14,12 @@ class CalcController extends Controller
     */
     public function show(Request $request) {
 
+        // Backend validation
+        // Had to create unique validate method as 'this->validate' was throwing errors
         $validator = Validator::make($request->all(), [
-            'customers' => 'integer',
-            'amount' => 'numeric',
+            'customers' => 'integer|min:2',
+            'amount' => 'numeric|min:10',
+
         ]);
 
         if ($validator->fails()) {
@@ -24,6 +27,7 @@ class CalcController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+
         // Values
         $customers = (isset($_GET['customers'])) ? $_GET['customers'] : '';
         $roundUp = (isset($_GET['roundUp'])) ? $_GET['roundUp'] : '';
@@ -41,15 +45,16 @@ class CalcController extends Controller
             $results = 'A tip of '.$service.'% has been added.';
         }
 
-        // Caculation for splitting bill, with rounding and without rounding
+        // Caculation for splitting bill, with rounding or without rounding
         if(is_numeric($amount) && is_numeric($customers)) {
-            if($roundUp == 'CHECKED') {
-                $calculate = 'Each person should pay $'.ceil($amount / $customers) * (1 + $service);
+            if($roundUp == 'yes') {
+                $calculate = 'Each person should pay $'.ceil(($amount / $customers) * (1 + $service));
             } else {
-                $calculate = 'Each person should pay $'.floor($amount / $customers) * (1 +$service);
+                $calculate = 'Each person should pay $'.floatval(($amount / $customers) * (1 +$service));
             }
         }
 
+        // Allows variables to be used in view templates
         return view('layouts.master')->with([
             'calculate' => $calculate,
             'customers' => $customers,
@@ -59,7 +64,5 @@ class CalcController extends Controller
             'alertType' => $alertType,
             'results' => $results,
         ]);
-
-
     }
 }
