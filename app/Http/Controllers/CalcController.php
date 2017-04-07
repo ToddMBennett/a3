@@ -19,7 +19,7 @@ class CalcController extends Controller
         $validator = Validator::make($request->all(), [
             'customers' => 'integer|min:2',
             'amount' => 'numeric|min:10',
-
+            'service' => 'numeric',
         ]);
 
         if ($validator->fails()) {
