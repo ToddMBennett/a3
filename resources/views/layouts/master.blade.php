@@ -34,7 +34,7 @@
 			          {{-- <!-- Text input for number of paying customers --> --}}
 			          <div class='formInput'>
 				            <label for='split'>Split how many ways? </label>
-				            <input type='text' name='customers' id='split' size='16' placeholder='Paying customers' required="required" value='{{ $customers or '' }}'>
+				            <input type='text' name='customers' id='split' size='16' placeholder='Paying customers' required="required" value= {{ $customers or '' }}>
           			</div>
 
 								{{-- Displaying errors after validation check --}}
