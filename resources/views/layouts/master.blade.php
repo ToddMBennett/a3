@@ -13,6 +13,7 @@
 		    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 				<link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
+
     {{-- <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -33,7 +34,7 @@
 			          {{-- <!-- Text input for number of paying customers --> --}}
 			          <div class='formInput'>
 				            <label for='split'>Split how many ways? </label>
-				            <input type='text' name='customers' id='split' size='16' placeholder='Paying customers' required="required" value= {{ $customers }}>
+				            <input type='text' name='customers' id='split' size='16' placeholder='Paying customers' required="required" value='{{ $customers or '' }}'>
           			</div>
 
 								{{-- Displaying errors after validation check --}}
@@ -48,7 +49,7 @@
 			          {{-- <!-- Text input for total bill --> --}}
 			          <div class='formInput'>
 				            <label for='tab'>How much is the tab? $</label>
-				            <input type='text' name='amount' id='tab' size='16' placeholder='Enter total bill' required="required" value= {{ $amount }}>
+				            <input type='text' name='amount' id='tab' size='16' placeholder='Enter total bill' required="required" value= {{ $amount or '' }}>
 			          </div>
 
 								{{-- Displaying errors after validation check --}}
