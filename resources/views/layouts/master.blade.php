@@ -88,14 +88,14 @@
 			          </div>
 
 			          <hr />
-								
+
 			          {{-- Calculate button --}}
 			          <label for='sbmt'></label>
 			            	<input type='submit' class='btn btn-primary btn-lg' value='Calculate' id='sbmt' onclick=><br>
 
 			          {{-- Alert button - showing amount of what each customer owes --}}
 			          <div class='btn'>
-			            	<button id="calc" type='button' style='display:none;' class='alert alert-success'>{{ $calculate }}</button>
+			            	<button id="btn" type='button' class='alert alert-success'>{{ $calculate }}</button>
 								</div>
 
         		</form>
