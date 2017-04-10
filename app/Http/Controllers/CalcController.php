@@ -65,4 +65,14 @@ class CalcController extends Controller
             'results' => $results,
         ]);
     }
+
+    // public function addBill() {
+    //
+    //
+    // }
+    //
+    // public function storeBill() {
+    //
+    //
+    // }
 }
