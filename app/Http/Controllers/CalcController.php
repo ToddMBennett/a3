@@ -65,5 +65,4 @@ class CalcController extends Controller
             'results' => $results,
         ]);
     }
-
 }
