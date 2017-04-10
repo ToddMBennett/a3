@@ -91,7 +91,7 @@
 
 			          {{-- Calculate button --}}
 			          <label for='sbmt'></label>
-			            	<input type='submit' class='btn btn-primary btn-lg' value='Calculate' id='sbmt' onclick=><br>
+			            	<input type='submit' class='btn btn-primary btn-lg' value='Calculate' id='sbmt'><br>
 
 			          {{-- Alert button - showing amount of what each customer owes --}}
 			          <div class='btn'>
