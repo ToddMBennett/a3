@@ -66,13 +66,4 @@ class CalcController extends Controller
         ]);
     }
 
-    // public function addBill() {
-    //
-    //
-    // }
-    //
-    // public function storeBill() {
-    //
-    //
-    // }
 }
